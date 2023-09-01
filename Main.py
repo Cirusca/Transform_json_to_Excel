@@ -1,20 +1,26 @@
 import pandas as pd
-import xlsxwriter
 import json
 import os
 
 
+
 #EXTRAIR
-df_json = pd.read_json('db.json')
+with open('Transform_json_to_Excel\db.json', 'r') as f:
+    data = json.loads(f.read())
 
-dados = pd.json_normalize(df_json,record_path=['livros'], meta=['descricao'] )
-print(dados)
-keyss = df_json['livros']
+df = pd.json_normalize(data, record_path=['books'], meta=['books', ['books', 'author', 'first_name'], ['books', 'author', 'last_name'], ['books', 'publisher', 'name'], ['books', 'publisher', 'location']])
 
-print(keyss)
+
+
+# dados = pd.json_normalize(data,record_path=['livros'], meta=['livros', ['livros','titulo']])
+
+# print(dados)
+
 
 
 #TRANSFORM
 
 
+
 #LOADING
+
